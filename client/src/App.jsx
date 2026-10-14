@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/ai" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path="write-articles" element={<WriteArticles />} />
+          <Route path="write-article" element={<WriteArticles />} />
           <Route path="blog-titles" element={<BlogTitles />} />
           <Route path="generate-images" element={<GenerateImages />} />
           <Route path="remove-background" element={<RemoveBackground />} />
