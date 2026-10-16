@@ -2,6 +2,7 @@ import {  Show, useClerk, useUser } from "@clerk/react";
 import { Image, Eraser, House, SquarePen, Scissors, FileText, Users, Hash, LogOut } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from '@clerk/react'
 
 const navItems = [
     { to: '/ai', label: 'Dashboard', Icon: House },
@@ -15,6 +16,7 @@ const navItems = [
 ]
 
 function Sidebar({ sidebar, setSidebar }) {
+     const { has } = useAuth()
     const { user } = useUser();
     const { signOut, openUserProfile } = useClerk();
     return (
@@ -47,7 +49,7 @@ function Sidebar({ sidebar, setSidebar }) {
                     <div>
                         <h1 className="text-sm font-medium">{user.fullName}</h1>
                         <p className="text-xs text-gray-500">
-                            Plan
+                           {has?.({ plan: 'premium' }) ? 'Premium' : 'Free'}
                         </p>
                     </div>
                     <LogOut onClick={signOut} className="w-4.5 text-gray-400
