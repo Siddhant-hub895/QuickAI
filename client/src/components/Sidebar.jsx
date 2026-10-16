@@ -1,5 +1,5 @@
-import { useClerk, useUser } from "@clerk/react";
-import { Image, Eraser, House, SquarePen, Scissors, FileText, Users, Hash } from "lucide-react";
+import {  Show, useClerk, useUser } from "@clerk/react";
+import { Image, Eraser, House, SquarePen, Scissors, FileText, Users, Hash, LogOut } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -18,7 +18,7 @@ function Sidebar({ sidebar, setSidebar }) {
     const { user } = useUser();
     const { signOut, openUserProfile } = useClerk();
     return (
-        <div className={` w-60 bg-white border-r border-gray-200 flex flex-col
+        <div className={` w-60 p-4.5 bg-white border-r border-gray-200 flex flex-col
         justify-between items-center max-sm:absolute top-14 bottom-0
         ${sidebar ? 'translate-x-0' : 'max-sm:translate-x-full'} transition-all duration-300
         ease-in-out`}>
@@ -39,6 +39,19 @@ function Sidebar({ sidebar, setSidebar }) {
 
                         </NavLink>
                     ))}
+                </div>
+            </div>
+            <div className="w-full border-t border-gray-200 flex items-center justify-between">
+                <div onClick={openUserProfile} className="flex gap-2 items-center cursor-pointer">
+                    <img src={user.imageUrl} className="w-8 rounded-full" alt=""/>
+                    <div>
+                        <h1 className="text-sm font-medium">{user.fullName}</h1>
+                        <p className="text-xs text-gray-500">
+                            Plan
+                        </p>
+                    </div>
+                    <LogOut onClick={signOut} className="w-4.5 text-gray-400
+                    hover:text-gray-700 transition cursor-pointer"/>
                 </div>
             </div>
         </div>
