@@ -7,12 +7,12 @@ import { useAuth } from '@clerk/react'
 const navItems = [
     { to: '/ai', label: 'Dashboard', Icon: House },
     { to: '/ai/write-article', label: 'Write Article', Icon: SquarePen },
-    { to: '/ai/blog-titles', label: 'blog titles', Icon: Hash },
-    { to: '/ai/generate-images', label: 'generate images', Icon: Image},
-    { to: '/ai/remove-background', label: 'remove background', Icon: Eraser },
-    { to: '/ai/remove-object', label: 'remove object', Icon: Scissors },
-    { to: '/ai/review-resume', label: 'review resume', Icon: FileText },
-    { to: '/ai/community', label: 'community', Icon: Users },
+    { to: '/ai/blog-titles', label: 'Blog Titles', Icon: Hash },
+    { to: '/ai/generate-images', label: 'Generate Images', Icon: Image},
+    { to: '/ai/remove-background', label: 'Remove Background', Icon: Eraser },
+    { to: '/ai/remove-object', label: 'Remove Object', Icon: Scissors },
+    { to: '/ai/review-resume', label: 'Review Resume', Icon: FileText },
+    { to: '/ai/community', label: 'Community', Icon: Users },
 ]
 
 function Sidebar({ sidebar, setSidebar }) {
