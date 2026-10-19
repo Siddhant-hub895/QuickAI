@@ -3,6 +3,7 @@ import { Edit, Sparkles } from 'lucide-react';
 import axios from 'axios'
 import { useAuth } from '@clerk/react'
 import Markdown from 'react-markdown'
+import toast from 'react-hot-toast'
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -36,8 +37,8 @@ function WriteArticles() {
             }
         } catch (error) {
             toast.error(error.message);
-
         }
+         setLoading(false);
     }
     return (
         <div className="h-full overflow-y-scroll p-6 items-start flex flex-row gap-4
