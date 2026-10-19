@@ -78,7 +78,7 @@ export const generateBlogTitle = async (req, res) => {
                 },
             ],
             temperature: 0.7,
-            max_tokens: 100
+            max_tokens: 2000
         });
 
         const content = response.choices[0].message.content
@@ -150,7 +150,7 @@ export const generateImage = async (req, res) => {
 export const removeImageBackground = async (req, res) => {
     try {
         const { userId } = req.auth();
-        const { image } = req.file;
+        const image = req.file;
         const plan = req.plan;
 
         if (plan != 'premium') {
@@ -158,7 +158,7 @@ export const removeImageBackground = async (req, res) => {
         }
         const { secure_url } = await cloudinary.uploader.upload(image.path, {
             transformation: [{
-                effect: 'background-removal',
+                effect: 'background_removal',
                 background_removal: 'remove_the_background'
             }]
         });
@@ -182,16 +182,16 @@ export const removeImageObject = async (req, res) => {
     try {
         const { userId } = req.auth();
         const { object } = req.body;
-        const { image } = req.file;
+        const image = req.file;
         const plan = req.plan;
 
         if (plan != 'premium') {
-            return res.json({ success: false, message: "This feature is only available for premiun subscription" })
+            return res.json({ success: false, message: "This feature is only available for premium subscription" })
         }
         const { public_id } = await cloudinary.uploader.upload(image.path);
 
         const imageUrl = cloudinary.url(public_id, {
-            transformation: [{ effect: `gem-remove:${object}` }],
+            transformation: [{ effect: `gen_remove:${object}` }],
             resource_type: 'image'
         }
         )
@@ -213,7 +213,7 @@ export const removeImageObject = async (req, res) => {
 export const resumeReview = async (req, res) => {
     try {
         const { userId } = req.auth();
-        const { resume } = req.file;
+        const resume = req.file;
         const plan = req.plan;
 
         if (plan != 'premium') {
@@ -231,7 +231,7 @@ export const resumeReview = async (req, res) => {
         strengths, weakness, and areas for improvement. Resume Content:\n\n${pdfData.text}`
 
         const response = await AI.chat.completions.create({
-            model: "gemini-3.8-flash",
+            model:"gemini-3.8-flash",
             messages: [
                 {
                     role: "user",
